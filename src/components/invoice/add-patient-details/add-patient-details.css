@@ -1,0 +1,15 @@
+#addPatientDetailsForm .ant-row{
+    margin-bottom: -7px !important;
+}
+
+#particularsTable .ant-table-wrapper .ant-table-tbody>tr>td{
+    padding: 1px !important;
+}
+
+#regNoDetails .ant-input-search >.ant-input-group >.ant-input-group-addon:last-child .ant-input-search-button{
+    height: 34px !important;
+}
+
+#regNoDetails .ant-input-affix-wrapper-lg{
+padding: 4px !important;
+}

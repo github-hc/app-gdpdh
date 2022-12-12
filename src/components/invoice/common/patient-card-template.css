@@ -1,0 +1,56 @@
+#cardDetails{
+    width: 100%;
+}
+
+#cardDetails th{
+    text-align: right;
+    font-size: 8px;
+    width: 30%;
+}
+
+#cardDetails td{
+    font-size: 8px;
+}
+
+#lblTop{
+    font-size: 5px !important;
+    font-weight: 400 !important;
+}
+
+#lblMid{
+  font-size: 7px !important;
+  font-weight: 800 !important;
+}
+
+#lblLast{
+    font-size: 6px !important;
+    font-weight: 600 !important;
+}
+
+#cardDetails label span{
+    display: block;
+}
+
+#cardFooter label{
+    display: block;
+    font-size: 5px;
+}
+
+#cardFooter td{
+    width: 80px !important;
+    text-align: center;
+}
+
+.ant-drawer-body .ant-card-body{
+    padding: 1px !important;
+}
+
+.lineHeight{
+    line-height: 0.8;
+}
+
+#headerRight{
+    font-size: 5px !important;
+    text-align: right;
+    float:right;
+}

@@ -1,0 +1,12 @@
+.logo {
+    height: 32px;
+    margin: 16px;
+  }
+
+#publicWebLayout .ant-layout-header {
+    background: #18AFD3 !important;
+}
+
+#publicWebLayout .ant-menu-dark {
+    background: #18AFD3 !important;
+}

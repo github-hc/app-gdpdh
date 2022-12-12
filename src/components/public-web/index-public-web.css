@@ -1,0 +1,21 @@
+#home{
+    min-height: 400px !important;
+}
+
+#services{
+    min-height: 400px !important;
+    padding: 30px !important;
+}
+
+#about{
+    min-height: 400px !important;
+}
+
+#contact{
+    min-height: 400px !important;
+}
+
+.ant-divider{
+   padding-left: 40px !important;
+   padding-right: 40px !important;
+}

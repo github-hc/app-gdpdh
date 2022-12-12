@@ -1,0 +1,15 @@
+#home .ant-card{
+    padding-left: 20% !important;
+    border: none !important;
+}
+.lblMainDetailsMid span{
+    color: white !important;
+    padding: 3px !important;
+    font-weight: 400 !important;
+}
+
+.lblMainDetailsOth span{
+    color:  	#484848 !important;
+    padding: 3px !important;
+    font-weight: 400 !important;
+}

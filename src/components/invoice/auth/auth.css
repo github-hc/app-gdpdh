@@ -1,0 +1,18 @@
+#loginContainer{
+    height: 100vh !important;
+    width: 100%;
+    padding-bottom: 5px !important;
+}
+
+.center {
+    margin: auto;
+    padding: 10px;
+    width: 80%;
+    margin-top: 20%;
+  }
+
+  #leftContainer{
+      height: 100vh !important;
+      width: 100%;
+      background: #001529;
+  }
