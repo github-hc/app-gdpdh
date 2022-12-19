@@ -1,17 +1,14 @@
-import { Col, Divider, Row, Table } from 'antd';
-import { useState } from 'react';
+import { Divider } from 'antd';
 import './invoice-template.css';
-import moment, { Moment } from 'moment';
+
 const InvoiceTemplate = ({ patientBasicDetails, paricularsList, particularsTotal }) => {
-    console.log(patientBasicDetails);
     return (
         <div style={{ padding: '10px', fontSize: '6px' }}>
-            <table id="mainInvoiceTable" style={{ width: '380px' }}>
+            <table id="mainInvoiceTable" style={{ width: '360px' }}>
                 <tbody>
                     <tr>
                         <td>
                             <h3>Invoice</h3>
-                            <p>Date: {moment().format('DD-MM-YYYY')}</p>
                         </td>
                         <td>
                             <table cellSpacing={'0'} cellPadding={'0'} style={{ textAlign: 'right', float: 'right', padding: '2px' }}>
@@ -67,7 +64,7 @@ const InvoiceTemplate = ({ patientBasicDetails, paricularsList, particularsTotal
                                     </tr>
                                     <tr>
                                         <th>Appointment Date: </th>
-                                        <td>{typeof (patientBasicDetails.appointmentDate) === 'object' ? patientBasicDetails.appointmentDate.format('DD-MM-YYYY') : moment(patientBasicDetails.appointmentDate).format('DD-MM-YYYY')}</td>
+                                        <td>{typeof (patientBasicDetails.appointmentDate) === 'object' ? patientBasicDetails.appointmentDate.format('DD-MM-YYYY HH:mm') : patientBasicDetails.appointmentDate}</td>
                                     </tr>
                                     <tr>
                                         <th>Consultant: </th>
@@ -88,7 +85,7 @@ const InvoiceTemplate = ({ patientBasicDetails, paricularsList, particularsTotal
                     </tr>
                     <tr>
                         <td colSpan={2}>
-                            <table id="partcularsTable" border={'1'} cellSpacing={'0'} cellPadding={'0'} width={'380px'}>
+                            <table id="partcularsTable" border={'1'} cellSpacing={'0'} cellPadding={'0'} width={'360px'}>
                                 <tr>
                                     <th>Sr No</th>
                                     <th>Particulars</th>
@@ -118,7 +115,7 @@ const InvoiceTemplate = ({ patientBasicDetails, paricularsList, particularsTotal
 
                     <tr>
                         <td colSpan={2}>
-                            <table width={'380px'} id="particularsSummary">
+                            <table width={'360px'} id="particularsSummary">
                                 <tr>
                                     <td colSpan={3}><strong>Total (₹)</strong>: {particularsTotal}</td>
                                 </tr>

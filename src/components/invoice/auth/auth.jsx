@@ -5,6 +5,11 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { AuthService } from '../../../services/auth-service';
 
 const Auth = () => {
+    const layout = window.innerWidth < 1025 ? {} : {
+        labelCol: { span: 8 },
+        wrapperCol: { span: 16 },
+    };
+    
     const history = useHistory();
 
     //#region  useEffect
@@ -25,7 +30,7 @@ const Auth = () => {
 
         const response = await AuthService.SignInUser(req);
 
-        if (response && response.status == 200 && response.data) {
+        if (response && response.status === 200 && response.data) {
             localStorage.setItem('token', response.data.token);
             history.push('/invoice/view-patient-details');
         }
@@ -34,11 +39,8 @@ const Auth = () => {
             alert('Invalid User Login Attempt');
         }
     };
-
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-    };
     //#endregion
+
     return (
         <div id="loginContainer">
             <Row id="containerRow">
@@ -50,18 +52,14 @@ const Auth = () => {
                     <div className='center'>
                         <Form
                             name="basic"
-                            labelCol={{
-                                span: 8,
-                            }}
-                            wrapperCol={{
-                                span: 16,
-                            }}
+                            {...layout}
                             initialValues={{
                                 remember: true,
                             }}
                             onFinish={onFinish}
-                            onFinishFailed={onFinishFailed}
                             autoComplete="off"
+
+                            layout={window.innerWidth< 1025? 'vertical': 'horizontal'}
                         >
                             <Form.Item
                                 label="Username"

@@ -38,3 +38,11 @@
       float: right;
       padding-right: 50px;
   }
+
+  #mainInvoiceTable{
+    table-layout: fixed;
+  }
+
+  #partcularsTable{
+    table-layout: fixed;
+  }

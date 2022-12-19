@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { SearchOutlined } from '@ant-design/icons';
-import { Button, Input, Space, Table, Row, Col, Drawer } from 'antd';
+import { IdcardOutlined, PrinterOutlined, SearchOutlined, UserAddOutlined } from '@ant-design/icons';
+import { Button, Input, Space, Table, Row, Col, Drawer, Tooltip, Spin } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { PatientDetailService } from '../../../services/patient-detail-service';
 import { Preview, print } from 'react-html2pdf';
 import InvoiceTemplate from '../common/invoice-template';
 import PatientCardTemplate from '../common/patient-card-template';
+import moment from 'moment';
 
 const ViewPatientDetails = () => {
     //#region local var declare
@@ -22,12 +23,14 @@ const ViewPatientDetails = () => {
     const [particularsTotal, setParticularsTotal] = useState(0);
     const [openCardDrawer, setOpenCardDrawer] = useState(false);
     const [openInvoiceDrawer, setOpenInvoiceDrawer] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
     //#endregion
 
     //#region useEffect
     useEffect(() => {
         async function init() {
+            setIsLoading(true);
             const response = await PatientDetailService.getPatientDetail();
             if (response && response.data) {
                 let data = [];
@@ -37,6 +40,10 @@ const ViewPatientDetails = () => {
                 });
 
                 setDataset(data);
+                setIsLoading(false);
+            }
+            else {
+                setIsLoading(false);
             }
         }
 
@@ -154,10 +161,8 @@ const ViewPatientDetails = () => {
 
     //#region events
     const onPrintInvoice = (row) => {
-        console.log(row);
-
         var values = dataset.find(x => x.id === row.patientID);
-        console.log(values);
+
         const createPatientDetailsReq = {
             registrationNo: values.registrationNo,
             fullName: values.fullName,
@@ -182,14 +187,11 @@ const ViewPatientDetails = () => {
     }
 
     const onExistingNewAppointmentClick = (e) => {
-        console.log(e);
         localStorage.setItem('ExistingPatientRowSelected', JSON.stringify(e));
         history.push('/invoice/add-patient-details?id=' + e.id);
     }
 
     const onPrintCardClick = (e) => {
-        console.log(e);
-
         setPatientBasicDetails(e);
 
         setOpenCardDrawer(true);
@@ -212,12 +214,24 @@ const ViewPatientDetails = () => {
     //#endregion
 
     //#region  table columns
+    const mobColumns = [
+        {
+            title: 'Reg No',
+            dataIndex: 'registrationNo',
+            key: 'registrationNo',
+            ...getColumnSearchProps('registrationNo'),
+        },
+        {
+            title: '',
+            dataIndex: '',
+            render: (e) => <Button type='link' icon={<UserAddOutlined />} onClick={() => onExistingNewAppointmentClick(e)}></Button>,
+        }]
+
+
     const columns = [
         {
             title: 'ID',
             dataIndex: 'id',
-            key: 'id',
-            width: '70px'
         },
         {
             title: 'RegistrationNo',
@@ -258,18 +272,24 @@ const ViewPatientDetails = () => {
         {
             title: '',
             dataIndex: '',
-            width: '100px',
-            render: (e) => <Button type='link' onClick={() => onPrintCardClick(e)}>Print Card</Button>,
+            width: '50px',
+            render: (e) => <Tooltip title={'View Card'}> <Button type='default' icon={<IdcardOutlined />} onClick={() => onPrintCardClick(e)}></Button></Tooltip>,
         },
         {
             title: '',
             dataIndex: '',
             width: '100px',
-            render: (e) => <Button type='link' onClick={() => onExistingNewAppointmentClick(e)}>New Appointment</Button>,
+            render: (e) => <Tooltip title={'New Appointment'}> <Button type='default' icon={<UserAddOutlined />} onClick={() => onExistingNewAppointmentClick(e)}></Button></Tooltip>,
         }
     ];
 
     const apointmentColumns = [
+        {
+            title: '',
+            dataIndex: 'key',
+            key: 'key',
+            width: '50px'
+        },
         {
             title: 'Appointments',
             dataIndex: 'appointmentDate',
@@ -281,10 +301,11 @@ const ViewPatientDetails = () => {
             title: '',
             dataIndex: '',
             width: '100px',
-            render: (row) => <Button type='link' onClick={() => onPrintInvoice(row)}>Print Invoice</Button>,
+            render: (row) => <Tooltip title={'View Invoice'}> <Button type='default' icon={<PrinterOutlined />} onClick={() => onPrintInvoice(row)}></Button></Tooltip>,
         }
     ];
     //#endregion
+
     return <>
         <Drawer
             title={''}
@@ -297,8 +318,8 @@ const ViewPatientDetails = () => {
                 <Space>
                     <Button onClick={onInvoiceDrawerClose}>Cancel</Button>
                     <Button type="primary" onClick={() =>
-                        print('a', 'preview-invoice-template')}>
-                        Download PDF
+                        print('invoice-' + moment().format('DD/MM/YYYY HH:mm:ss') + '', 'preview-invoice-template')}>
+                        Download
                     </Button>
                 </Space>
             }
@@ -310,6 +331,7 @@ const ViewPatientDetails = () => {
                 : <></>
             }
         </Drawer>
+
         <Drawer
             title={''}
             placement="right"
@@ -321,8 +343,8 @@ const ViewPatientDetails = () => {
                 <Space>
                     <Button onClick={onCardDrawerClose}>Cancel</Button>
                     <Button type="primary" onClick={() =>
-                        print('b', 'preview-card-template')}>
-                        Download PDF
+                        print('card-' + moment().format('DD/MM/YYYY HH:mm:ss') + '', 'preview-card-template')}>
+                        Download
                     </Button>
                 </Space>
             }
@@ -334,36 +356,57 @@ const ViewPatientDetails = () => {
                 : <></>
             }
         </Drawer>
-
-        <Row>
-            <Col span={20}>
-                <label>
+        <Spin tip="Loading" spinning={isLoading}>
+            {window.innerWidth < 781 ?
+                <>
+                    <Row>
+                        <Col span={24}>
+                            {/* <label>
                     Patients Records:
-                </label>
-            </Col>
-            <Col span={4}>
-                <Button type='primary' onClick={onAddNewClick}>Add New Patient</Button>
-            </Col>
-        </Row>
-        <Table
-            columns={columns}
-            dataSource={dataset}
-            pagination={{ pageSize: 12 }}
-            expandable={{
-                expandedRowRender: (record) => {
-                    console.log(record.patientAppointments)
-                    let expandData = [];
+                </label> */}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={16}>
+                            <Button type='primary' icon={<UserAddOutlined />} onClick={onAddNewClick}>Add New Patient</Button>
+                        </Col>
+                    </Row>
+                </>
 
-                    record.patientAppointments.forEach((row, index) => {
-                        expandData.push({ key: index + 1, ...row });
-                    });
+                :
+                <Row>
+                    <Col span={20}>
+                        <label>
+                            Patients Records:
+                        </label>
+                    </Col>
+                    <Col span={4}>
+                        <Button type='primary' icon={<UserAddOutlined />} onClick={onAddNewClick}>Add New Patient</Button>
+                    </Col>
+                </Row>
+            }
 
-                    return <Table
-                        columns={apointmentColumns}
-                        dataSource={expandData}
-                        style={{ width: '70%' }}
-                    />
-                },
-            }} /></>;
+            <Table
+                columns={window.innerWidth < 1025 ? mobColumns : columns}
+                dataSource={dataset}
+                pagination={{ pageSize: 12 }}
+                expandable={{
+                    expandedRowRender: (record) => {
+                        let expandData = [];
+
+                        record.patientAppointments.forEach((row, index) => {
+                            expandData.push({ key: index + 1, ...row });
+                        });
+
+                        return <Table
+                            columns={apointmentColumns}
+                            dataSource={expandData}
+                            style={{ width: '90%' }}
+                            pagination={{ pageSize: 5 }}
+                        />
+                    },
+                }} />
+        </Spin>
+    </>;
 };
 export default ViewPatientDetails;

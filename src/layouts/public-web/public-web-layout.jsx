@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Link } from 'react-router-dom';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import React from 'react';
+import { Route } from 'react-router-dom';
+import { Layout, Menu, theme } from 'antd';
 import './public-web-layout.css';
 const { Header, Content, Footer } = Layout;
 
@@ -11,32 +11,27 @@ const PublicWebLayout = ({ children, ...rest }) => {
     } = theme.useToken();
 
     const onMenuItemClick = (type)=> {
-        console.log(type)
         switch(type){
             case 1: {
                 const section = document.querySelector('#home');
-                console.log(section);
                 return section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
             }
             case 2:{
                 const section = document.querySelector('#services');
-                console.log(section);
                 return section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
             }
             case 3:{
                 const section = document.querySelector('#about');
-                console.log(section);
                 return section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
             }
             case 4:{
                 const section = document.querySelector('#contact');
-                console.log(section);
                 return section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
             }
         }
     }
     return (
-        <Layout id="publicWebLayout" className="layout">
+        <Layout id="publicWebLayout" className="layout" breakpoint={{xs: 8, sm: 16, md: 24, lg: 32}}>
             <Header>
                 {/* <div className="logo" /> */}
                 <Menu

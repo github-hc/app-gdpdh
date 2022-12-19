@@ -14,13 +14,12 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 const { Header, Sider, Content } = Layout;
 
 const InvoiceMainLayout = ({ children, ...rest }) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const location = useLocation();
   const history = useHistory();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log(token)
     if(!token || token.trim().toLowerCase() === 'null' || token.trim().toLowerCase() === 'undefined'){
      history.push('/invoice/sign-in');
     }

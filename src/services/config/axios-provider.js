@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+
 export const AxiosProvider = {
     get,
     post
@@ -35,14 +35,13 @@ axios.interceptors.response.use(function (response) {
             return;
         }
 
-        console.log(error);
         return error.response;
     }
     else if (error.request) {
-        console.log(error.request);
+        alert('Network Request Error');
     }
     else {
-        console.log(error.message);
+        alert('Network  Error');
     }
 
     return Promise.reject(error);

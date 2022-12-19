@@ -5,14 +5,9 @@ import AddPatientDetails from './components/invoice/add-patient-details/add-pati
 import ViewPatientDetails from './components/invoice/view-patient-details/view-patient-details';
 import Auth from './components/invoice/auth/auth';
 import PublicWebLayoutRoute from './layouts/public-web/public-web-layout';
-import Home from './components/public-web/home/home';
 import IndexPublicWeb from './components/public-web/index-public-web';
-import DentalServices from './components/public-web/dental-services/dental-services';
-import About from './components/public-web/about/about';
-import Contact from './components/public-web/contact/contact';
 
 const App = () =>{
-
   return(
     <div>
       <BrowserRouter>
@@ -23,10 +18,7 @@ const App = () =>{
           <Route exact path={'/invoice/sign-in'} component={Auth} />
 
           <PublicWebLayoutRoute exact path="/home" component={IndexPublicWeb} />
-          {/* <PublicWebLayoutRoute exact path="/services" component={DentalServices} />
-          <PublicWebLayoutRoute exact path="/about" component={About} />
-          <PublicWebLayoutRoute exact path="/contact" component={Contact} /> */}
-
+          <Route exact path={'/invoice'} component={ViewPatientDetails} />
           <InvoiceMainLayoutRoute exact path="/invoice/add-patient-details:id?" component={AddPatientDetails} />
           <InvoiceMainLayoutRoute exact path="/invoice/view-patient-details" component={ViewPatientDetails} />
         </Switch>

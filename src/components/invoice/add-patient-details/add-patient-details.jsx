@@ -1,4 +1,4 @@
-import { Button, Col, DatePicker, Form, Input, Row, Select, Table, Space, Drawer, InputNumber } from 'antd';
+import { Button, Col, DatePicker, Form, Input, Row, Select, Table, Space, Drawer, InputNumber, Spin } from 'antd';
 import {
     PlusOutlined,
     MinusOutlined,
@@ -14,13 +14,14 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { PatientDetailService } from '../../../services/patient-detail-service';
 import { useLocation } from 'react-router-dom';
 import PatientCardTemplate from '../common/patient-card-template';
+import moment from 'moment';
 
 dayjs.extend(customParseFormat);
 
 const AddPatientDetails = () => {
     //#region local var declare
     const { Option } = Select;
-    const layout = {
+    const layout = window.innerWidth < 1025 ? {} : {
         labelCol: { span: 2 },
         wrapperCol: { span: 16 },
     };
@@ -55,6 +56,7 @@ const AddPatientDetails = () => {
     const [patientParticularsDetails, setPatientParticularsDetails] = useState([]);
     const [particularsTotal, setParticularsTotal] = useState(0);
     const [idQueryParameter, setIdQueryParameter] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
     const location = useLocation();
     //#endregion
 
@@ -63,12 +65,8 @@ const AddPatientDetails = () => {
         const idQueryParam = new URLSearchParams(location.search).get('id');
         if (idQueryParam) {
             const existingPatientRowSelected = JSON.parse(localStorage.getItem('ExistingPatientRowSelected'));
-            console.log(idQueryParam);
-            console.log(existingPatientRowSelected);
             if (existingPatientRowSelected && existingPatientRowSelected.id === parseInt(idQueryParam)) {
                 setIdQueryParameter(idQueryParam);
-                console.log('match')
-                console.log(form);
                 form.setFieldsValue(
                     {
                         regNo: existingPatientRowSelected.registrationNo,
@@ -123,7 +121,6 @@ const AddPatientDetails = () => {
     }
 
     const onParticularRowInputChange = (e, i) => {
-        console.log(e)
         const particularsTableDataLen = particularsTableData.length + 1;
         let copyServiceTableData = [...particularsTableData];
 
@@ -139,7 +136,6 @@ const AddPatientDetails = () => {
     }
 
     const onAmountRowInputChange = (val, i) => {
-        console.log(val)
         const particularsTableDataLen = particularsTableData.length + 1;
         let copyServiceTableData = [...particularsTableData];
 
@@ -155,10 +151,7 @@ const AddPatientDetails = () => {
     }
 
     const onFinish = async (values) => {
-        console.log(values)
-        console.log(particularsTableData);
-        console.log(values);
-
+        setIsLoading(true);
         let particularsArr = [];
 
         for (let i = 0; i < particularsTableData.length; i++) {
@@ -182,9 +175,8 @@ const AddPatientDetails = () => {
             particularsList: particularsArr
         };
 
-        console.log(createPatientDetailsReq);
         const response = await PatientDetailService.createPatientDetail(createPatientDetailsReq);
-        console.log(response);
+
         if (response && response.status === 200 && response.data) {
             setPatientBasicDetails(createPatientDetailsReq);
 
@@ -198,16 +190,18 @@ const AddPatientDetails = () => {
 
                 localStorage.setItem('ExistingPatientRowSelected', JSON.stringify(existingPatientRowSelected));
             }
+
+            setIsLoading(false);
             alert('Saved Successfully');
         }
         else {
             setPatientBasicDetails(null);
+            setIsLoading(false);
             alert(response.data ? response.data : 'Could not save details');
         }
     };
 
     const onPrintInvoiceClick = () => {
-        console.log(patientBasicDetails);
         if (!patientBasicDetails || !patientBasicDetails.appointmentDate) {
             alert('No Details Found To Print Invoice');
             return;
@@ -224,7 +218,6 @@ const AddPatientDetails = () => {
     }
 
     const onPrintCardClick = () => {
-        console.log(patientBasicDetails);
         if (!patientBasicDetails) {
             alert('No Details Found To Print Invoice');
             return;
@@ -250,176 +243,186 @@ const AddPatientDetails = () => {
         }
     }
     //#endregion
+    
     return (
-        <Form
-            form={form}
-            {...layout}
-            id='addPatientDetailsForm'
-            onFinish={onFinish}
-        >
-            <Drawer
-                title={''}
-                placement="right"
-                size={'large'}
-                width={'500px'}
-                onClose={onInvoiceDrawerClose}
-                open={openInvoiceDrawer}
-                extra={
-                    <Space>
-                        <Button onClick={onInvoiceDrawerClose}>Cancel</Button>
-                        <Button type="primary" onClick={() =>
-                            print('a', 'preview-invoice-template')}>
-                            Download PDF
-                        </Button>
-                    </Space>
-                }
+        <Spin tip="Please wait..." spinning={isLoading}>
+            <Form
+                form={form}
+                {...layout}
+                id='addPatientDetailsForm'
+                onFinish={onFinish}
+                layout={window.innerWidth < 1025 ? 'vertical' : 'horizontal'}
             >
-                {openInvoiceDrawer ?
-                    <Preview id={'preview-invoice-template'}>
-                        <InvoiceTemplate patientBasicDetails={patientBasicDetails} paricularsList={patientParticularsDetails} particularsTotal={particularsTotal} />
-                    </Preview>
-                    : <></>
-                }
-            </Drawer>
-
-            <Drawer
-                title={''}
-
-                placement="right"
-                size={'large'}
-                width={'500px'}
-                onClose={onCardDrawerClose}
-                open={openCardDrawer}
-                extra={
-                    <Space>
-                        <Button onClick={onCardDrawerClose}>Cancel</Button>
-                        <Button type="primary" onClick={() =>
-                            print('b', 'preview-card-template')}>
-                            Download PDF
-                        </Button>
-                    </Space>
-                }
-            >
-                {openCardDrawer ?
-                    <Preview id={'preview-card-template'}>
-                        <PatientCardTemplate patientDetails={patientBasicDetails} />
-                    </Preview>
-                    : <></>
-                }
-            </Drawer>
-
-            <Row>
-                <Col span={24} id="regNoDetails">
-                    <Form.Item
-                        name="regNo"
-                        label="Reg. No."
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input disabled={idQueryParameter > 0 ? true : false} />
-                    </Form.Item>
-                </Col>
-            </Row>
-
-            <Row>
-                <Col span={24}>
-                    <Form.Item
-                        name="fullName"
-                        label="Full Name"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
-                </Col>
-            </Row>
-
-            <Row>
-                <Col span={24}>
-                    <Form.Item
-                        name="age"
-                        label="Age"
-                    >
-                        <Input onKeyPress={allowNumbersOnly} maxLength="3" />
-                    </Form.Item>
-                </Col>
-            </Row>
-
-            <Row>
-                <Col span={24}>
-                    <Form.Item name="gender" label="Gender">
-                        <Select
-                            allowClear
-                        >
-                            <Option value="male">Male</Option>
-                            <Option value="female">Female</Option>
-                            <Option value="other">Other</Option>
-                        </Select>
-                    </Form.Item>
-                </Col>
-            </Row>
-
-            <Row>
-                <Col span={24}>
-                    <Form.Item
-                        name="contactNo"
-                        label="ContactNo"
-                    >
-                        <Input onKeyPress={allowNumbersOnly} maxLength="20" />
-                    </Form.Item>
-                </Col>
-            </Row>
-
-            <Row>
-                <Col span={24}>
-                    <Form.Item
-                        name="date"
-                        label="Appointment"
-                    >
-
-                        <DatePicker showTime format={'DD-MM-YYYY HH:mm'} />
-                    </Form.Item>
-                </Col>
-            </Row>
-
-            <Row id="particularsTable">
-                <Col span={24}>
-                    <Form.Item
-                        label="Particulars"
-                    >
-                        <Table
-                            columns={particularsColumns}
-                            dataSource={particularsTableData}
-                            pagination={false}
-                            scroll={{ y: 200 }}
-                        />
-                        <Space style={{ float: 'right' }}>
-                            <Button type='primary' ghost onClick={onAddParticular} icon={<PlusOutlined />}></Button>
-                            <Button danger onClick={onRemoveParticular} icon={<MinusOutlined />}></Button>
-                        </Space>
-                    </Form.Item>
-                </Col>
-            </Row>
-
-            <Row>
-                <Col span={24}>
-                    <Form.Item
-                    >
+                <Drawer
+                    title={''}
+                    placement="right"
+                    size={'large'}
+                    width={'500px'}
+                    onClose={onInvoiceDrawerClose}
+                    open={openInvoiceDrawer}
+                    extra={
                         <Space>
-                            <Button id="saveBtn" type="primary" htmlType="submit" >Save</Button>
-                            <Button type="default" icon={<IdcardOutlined />} onClick={onPrintCardClick}>Print Card</Button>
-                            <Button type="default" icon={<PrinterOutlined />} onClick={onPrintInvoiceClick}>Print Invoice</Button>
+                            <Button onClick={onInvoiceDrawerClose}>Cancel</Button>
+                            <Button type="primary" onClick={() =>
+                                print('invoice-' + moment().format('DD/MM/YYYY HH:mm:ss') + '', 'preview-invoice-template')}>
+                                Download
+                            </Button>
                         </Space>
-                    </Form.Item>
-                </Col>
-            </Row>
-        </Form>
+                    }
+                >
+                    {openInvoiceDrawer ?
+                        <Preview id={'preview-invoice-template'}>
+                            <InvoiceTemplate patientBasicDetails={patientBasicDetails} paricularsList={patientParticularsDetails} particularsTotal={particularsTotal} />
+                        </Preview>
+                        : <></>
+                    }
+                </Drawer>
+
+                <Drawer
+                    title={''}
+
+                    placement="right"
+                    size={'large'}
+                    width={'500px'}
+                    onClose={onCardDrawerClose}
+                    open={openCardDrawer}
+                    extra={
+                        <Space>
+                            <Button onClick={onCardDrawerClose}>Cancel</Button>
+                            <Button type="primary" onClick={() =>
+                                print('card-' + moment().format('DD/MM/YYYY HH:mm:ss') + '', 'preview-card-template')}>
+                                Download
+                            </Button>
+                        </Space>
+                    }
+                >
+                    {openCardDrawer ?
+                        <Preview id={'preview-card-template'}>
+                            <PatientCardTemplate patientDetails={patientBasicDetails} />
+                        </Preview>
+                        : <></>
+                    }
+                </Drawer>
+
+                <Row>
+                    <Col span={24} id="regNoDetails">
+                        <Form.Item
+                            name="regNo"
+                            label="Reg. No."
+                            className="form-control-item"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input disabled={idQueryParameter > 0 ? true : false} />
+                        </Form.Item>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col span={24}>
+                        <Form.Item
+                            name="fullName"
+                            label="Full Name"
+                            className="form-control-item"
+                            rules={[
+                                {
+                                    required: true,
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col span={24}>
+                        <Form.Item
+                            name="age"
+                            label="Age"
+                            className="form-control-item"
+                        >
+                            <Input onKeyPress={allowNumbersOnly} maxLength="3" />
+                        </Form.Item>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col span={24}>
+                        <Form.Item name="gender" label="Gender" className="form-control-item">
+
+                            <Select
+                                allowClear
+                            >
+                                <Option value="male">Male</Option>
+                                <Option value="female">Female</Option>
+                                <Option value="other">Other</Option>
+                            </Select>
+                        </Form.Item>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col span={24}>
+                        <Form.Item
+                            name="contactNo"
+                            label="ContactNo"
+                            className="form-control-item"
+                        >
+                            <Input onKeyPress={allowNumbersOnly} maxLength="20" />
+                        </Form.Item>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col span={24}>
+                        <Form.Item
+                            name="date"
+                            label="Appointment"
+                        >
+
+                            <DatePicker showTime format={'DD-MM-YYYY HH:mm'} />
+                        </Form.Item>
+                    </Col>
+                </Row>
+
+                <Row id="particularsTable">
+                    <Col span={24}>
+                        <Form.Item
+                            label="Particulars"
+                            className='form-control-item'
+                        >
+                            <Table
+                                columns={particularsColumns}
+                                dataSource={particularsTableData}
+                                pagination={false}
+                                scroll={{ y: 200 }}
+                            />
+                            <Space style={{ float: 'right' }}>
+                                <Button type='primary' ghost onClick={onAddParticular} icon={<PlusOutlined />}></Button>
+                                <Button danger onClick={onRemoveParticular} icon={<MinusOutlined />}></Button>
+                            </Space>
+                        </Form.Item>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col span={24}>
+                        <Form.Item
+                        >
+                            <Space>
+                                <Button id="saveBtn" type="primary" htmlType="submit" >Save</Button>
+                                <Button type="default" icon={<IdcardOutlined />} onClick={onPrintCardClick}></Button>
+                                <Button type="default" icon={<PrinterOutlined />} onClick={onPrintInvoiceClick}></Button>
+                            </Space>
+                        </Form.Item>
+                    </Col>
+                </Row>
+            </Form>
+        </Spin>
     );
 };
 
