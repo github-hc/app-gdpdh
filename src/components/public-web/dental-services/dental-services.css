@@ -1,0 +1,30 @@
+.imgDimensions{
+    width: 80px !important;
+    height: 80px !important;
+}
+
+.serviceGridStyle{
+    width: 25% !important;
+    text-align: center !important;
+    height: 150px !important;
+}
+
+.serviceDesc{
+    font-size: 14px !important;
+}
+@media (max-width: 480px) {
+    .imgDimensions{
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .serviceGridStyle{
+        width: 25% !important;
+        text-align: center !important;
+        height: 120px !important;
+    }
+
+    .serviceDesc{
+        font-size: 8px !important;
+    }
+}

@@ -1,15 +1,99 @@
 #home .ant-card{
-    padding-left: 20% !important;
+    margin-left: 20% !important;
     border: none !important;
 }
-.lblMainDetailsMid span{
+.lblMainDetailsMid .gridStyleSpanRowMid{
     color: white !important;
     padding: 3px !important;
     font-weight: 400 !important;
 }
 
-.lblMainDetailsOth span{
+.lblMainDetailsOth .gridStyleSpanRowLR{
     color:  	#484848 !important;
     padding: 3px !important;
     font-weight: 400 !important;
+}
+
+.lblMainDetailsMid .gridStyleSpanRowMid_Head{
+    color: white !important;
+    padding: 3px !important;
+    font-weight: 400 !important;
+}
+
+.lblMainDetailsOth .gridStyleSpanRowLR_Head{
+    color:  	#484848 !important;
+    padding: 3px !important;
+    font-weight: 400 !important;
+}
+
+.gridStyleLR{
+    width: 25% !important;
+    text-align: center !important;
+    height: 100px !important;
+    background: #DCDCDC !important;
+}
+
+.gridStyleCenter{
+    width: 25% !important;
+    text-align:  center !important;
+    height: 100px !important;
+    background: #097969 !important;
+}
+
+@media (max-width: 480px) {
+    #home .ant-card{
+        border: none !important;
+        margin-left: 4px !important;
+    }
+
+    #home .ant-card .ant-card-grid{
+        height: 80px !important;
+        padding: 24px 0 0 0 !important;
+    }
+
+    .gridStyleLR{
+        width: 33% !important;
+        text-align: center !important;
+        height: 100px !important;
+        background: #DCDCDC !important;
+    }
+
+    .gridStyleCenter{
+        width: 33% !important;
+        text-align:  center !important;
+        height: 100px !important;
+        background: #097969 !important;
+    }
+
+    .lblMainDetailsMid .gridStyleSpanRowMid{
+        color: white !important;
+        padding: 0px !important;
+        font-weight: 400 !important;
+        display: block !important;
+        font-size: 7px !important;
+    }
+    
+    .lblMainDetailsOth .gridStyleSpanRowLR{
+        color:  	#484848 !important;
+        padding: 0px !important;
+        font-weight: 400 !important;
+        display: block !important;
+        font-size: 7px !important;
+    }
+
+    .lblMainDetailsMid .gridStyleSpanRowMid_Head{
+        color: white !important;
+        padding: 0px !important;
+        font-weight: 400 !important;
+        display: block !important;
+        font-size: 7px !important;
+    }
+    
+    .lblMainDetailsOth .gridStyleSpanRowLR_Head{
+        color:  	#484848 !important;
+        padding: 0px !important;
+        font-weight: 400 !important;
+        display: block !important;
+        font-size: 7px !important;
+    }
 }

@@ -1,0 +1,20 @@
+#aboutFoundation{
+    padding: 30px !important;
+}
+
+#aboutFounders{
+    padding: 30px !important;
+}
+
+.profile{
+    border: none !important;
+}
+
+.profile h4{
+    padding: 2px !important;
+}
+
+.profile p{
+    padding: 2px !important;
+    margin: 0px !important;
+}

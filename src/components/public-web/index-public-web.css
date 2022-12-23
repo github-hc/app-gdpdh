@@ -3,7 +3,6 @@
 }
 
 #services{
-    min-height: 400px !important;
     padding: 30px !important;
 }
 
@@ -18,4 +17,10 @@
 .ant-divider{
    padding-left: 40px !important;
    padding-right: 40px !important;
+}
+
+@media (max-width: 480px) {
+    #services{
+        padding: 5px !important;
+    }
 }

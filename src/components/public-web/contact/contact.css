@@ -1,0 +1,36 @@
+.mapLocation{
+    width: 80% !important;
+    height: 300px !important;
+    border: 0px !important;
+}
+
+.mapLocationContainer{
+    padding: 10px !important;
+}
+
+.mapLocationContainer .ant-tag{
+
+ padding: 10px !important;
+ margin-bottom: 4px !important;
+}
+.contactContainer {
+  margin-left: 38% !important;
+  margin-bottom: 30px !important;
+}
+
+.contactContainer .ant-tag{
+    height: auto !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    position: relative !important;
+    font-size: 15px !important;
+    font-weight: 700;
+}
+
+@media (max-width: 480px) {
+    .mapLocation{
+        width: 80% !important;
+        height: 300px !important;
+        border: 0px !important;
+    }
+}

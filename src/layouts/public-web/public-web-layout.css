@@ -4,9 +4,50 @@
   }
 
 #publicWebLayout .ant-layout-header {
-    background: #18AFD3 !important;
+    background: #097969 !important;
 }
 
 #publicWebLayout .ant-menu-dark {
-    background: #18AFD3 !important;
+    background: #097969 !important;
+}
+
+br {
+    display: block; /* makes it have a width */
+    content: ""; /* clears default height */
+    margin-top: 0; /* change this to whatever height you want it */
+}
+
+#publicWebLayout .ant-menu-title-content{
+ color: white !important;
+}
+
+  /* Media Query for Mobile Devices */
+  @media (max-width: 480px) {
+    #publicWebLayout .ant-menu-dark {
+        margin-left: -50px !important;
+    }
+
+    .ant-layout-content{
+        padding: 0 10px !important;
+    }
+}
+  
+/* Media Query for low resolution  Tablets, Ipads */
+@media (min-width: 481px) and (max-width: 767px) {
+
+}
+  
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 768px) and (max-width: 1024px){
+
+}
+  
+/* Media Query for Laptops and Desktops */
+@media (min-width: 1025px) and (max-width: 1280px){
+
+}
+  
+/* Media Query for Large screens */
+@media (min-width: 1281px) {
+
 }

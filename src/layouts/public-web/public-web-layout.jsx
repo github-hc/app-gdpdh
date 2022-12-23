@@ -32,7 +32,14 @@ const PublicWebLayout = ({ children, ...rest }) => {
     }
     return (
         <Layout id="publicWebLayout" className="layout" breakpoint={{xs: 8, sm: 16, md: 24, lg: 32}}>
-            <Header>
+            <Header
+             style={{
+                position: 'sticky',
+                top: 0,
+                zIndex: 1,
+                width: '100%',
+              }}
+            >
                 {/* <div className="logo" /> */}
                 <Menu
                     theme="dark"
@@ -55,6 +62,8 @@ const PublicWebLayout = ({ children, ...rest }) => {
                         Contact
                     </Menu.Item>
                 </Menu>
+
+               
             </Header>
             <Content
                 style={{

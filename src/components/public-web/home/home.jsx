@@ -2,28 +2,7 @@ import React from 'react';
 import { Carousel } from 'antd';
 import { Card } from 'antd';
 import './home.css';
-import { CalendarOutlined, ClockCircleOutlined, HomeOutlined, PhoneOutlined } from '@ant-design/icons';
-
-const gridStyle1 = {
-  width: '25%',
-  textAlign: 'center',
-  height: '100px',
-  background: '#DCDCDC'
-};
-
-const gridStyle2 = {
-    width: '25%',
-    textAlign: 'center',
-    height: '100px',
-    background: '#18AFD3'
-  };
-
-const gridStyle3 = {
-    width: '25%',
-    textAlign: 'center',
-    height: '100px',
-    background: '#DCDCDC'
-  };  
+import { BookOutlined, CalendarOutlined, ClockCircleOutlined, HomeOutlined, MobileOutlined, PhoneOutlined } from '@ant-design/icons';
 
 const contentStyle = {
   height: '400px',
@@ -34,35 +13,46 @@ const contentStyle = {
 };
 
 const Home = () => (
-    <>
-  <Carousel autoplay>
-    <div>
-      <h3 style={contentStyle}>1</h3>
-    </div>
-    <div>
-      <h3 style={contentStyle}>2</h3>
-    </div>
-    <div>
-      <h3 style={contentStyle}>3</h3>
-    </div>
-    <div>
-      <h3 style={contentStyle}>4</h3>
-    </div>
-  </Carousel>
+  <>
+    <Carousel autoplay>
+      <div>
+        <h3 style={contentStyle}>1</h3>
+      </div>
+      <div>
+        <h3 style={contentStyle}>2</h3>
+      </div>
+      <div>
+        <h3 style={contentStyle}>3</h3>
+      </div>
+      <div>
+        <h3 style={contentStyle}>4</h3>
+      </div>
+    </Carousel>
 
-<Card>
-  <Card.Grid style={gridStyle1}>
-      <label className="lblMainDetailsOth"><span><HomeOutlined /></span><span>505, Gangori Bazar, Jaipur - 302002</span></label>
-  </Card.Grid>
-    <Card.Grid style={gridStyle2}>
-    <label className="lblMainDetailsMid"><span><CalendarOutlined /></span><span>Book Appointment</span></label><br/>
-    <label className="lblMainDetailsMid"><span>( +91-7597513465 )</span></label><br/>
-    </Card.Grid>
-    <Card.Grid style={gridStyle3}>
-    
-    <label className="lblMainDetailsOth"><span><ClockCircleOutlined /></span> <span>Mon - Fri : 10:30 AM - 5PM</span></label><br/>
-    </Card.Grid>
-  </Card>
+    <Card>
+      <Card.Grid className='gridStyleLR'>
+        <label className="lblMainDetailsOth">
+          <span className='gridStyleSpanRowLR_Head'><PhoneOutlined /> 01423 - 299266</span><br />
+          <span className='gridStyleSpanRowLR_Head'><MobileOutlined /> 91 - 9602304200</span><br />
+        </label>
+      </Card.Grid>
+      <Card.Grid className='gridStyleCenter' onClick={()=>{
+            const section = document.querySelector('#contact');
+            return section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+      }}>
+        <label className="lblMainDetailsMid">
+          <span className='gridStyleSpanRowMid_Head'><CalendarOutlined /><br/> Book An Appointment</span><br/>
+        </label>
+      </Card.Grid>
+      <Card.Grid className='gridStyleLR' onClick={()=>{
+            const section = document.querySelector('#aboutFoundation');
+            return section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+      }}>
+        <label className="lblMainDetailsOth">
+          <span className='gridStyleSpanRowLR_Head'><BookOutlined /><br/> About Pushpanjali NGO</span><br />
+        </label><br />
+      </Card.Grid>
+    </Card>
   </>
 );
 export default Home;
