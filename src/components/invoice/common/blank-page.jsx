@@ -1,14 +1,13 @@
 import { Divider } from 'antd';
 import './invoice-template.css';
 
-const InvoiceTemplate = ({ patientBasicDetails, paricularsList, particularsTotal, invoiceNo }) => {
+const BlankPageTemplate = ({ patientBasicDetails }) => {
     return (
         <div style={{ padding: '10px', fontSize: '6px' }}>
             <table id="mainInvoiceTable" style={{ width: '360px' }}>
                 <tbody>
                     <tr>
                         <td>
-                            <h3>Invoice: {invoiceNo}</h3>
                             (Call: 01423-299266, 91-9602304200)
                         </td>
                         <td>
@@ -68,7 +67,7 @@ const InvoiceTemplate = ({ patientBasicDetails, paricularsList, particularsTotal
                                     </tr>
                                     <tr>
                                         <th>Appointment Date: </th>
-                                        <td>{typeof (patientBasicDetails.appointmentDate) === 'object' ? patientBasicDetails.appointmentDate.format('DD-MM-YYYY HH:mm') :  patientBasicDetails.appointmentDate}</td>
+                                        <td>{typeof (patientBasicDetails.appointmentDate) === 'object' ? patientBasicDetails.appointmentDate.format('DD-MM-YYYY HH:mm') : patientBasicDetails.appointmentDate}</td>
                                     </tr>
                                     <tr>
                                         <th>Consultant: </th>
@@ -87,53 +86,10 @@ const InvoiceTemplate = ({ patientBasicDetails, paricularsList, particularsTotal
                             <Divider style={{ margin: '4px' }} />
                         </td>
                     </tr>
-                    <tr>
-                        <td colSpan={2}>
-                            <table id="partcularsTable" border={'1'} cellSpacing={'0'} cellPadding={'0'} width={'360px'}>
-                                <thead>
-                                <tr>
-                                    <th width={'12%'}>Sr No</th>
-                                    <th>Particulars</th>
-                                    <th width={'20%'}>Amount (₹)</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                    paricularsList.length > 0 ?
-                                        paricularsList.map((row, index) => {
-                                            return <tr>
-                                                <td>
-                                                    {index + 1}
-                                                </td>
-                                                <td>
-                                                    {row.particular}
-                                                </td>
-                                                <td width={'100px'}>
-                                                    {row.amount}
-                                                </td>
-                                            </tr>
-                                        })
-                                        :
-                                        <><td height={'10px'}></td> <td></td> <td></td></>
-                                }
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td colSpan={2}>
-                            <table width={'360px'} id="particularsSummary">
-                                <tr>
-                                    <td colSpan={3}><strong>Total (₹)</strong>: {particularsTotal}</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
     );
 };
 
-export default InvoiceTemplate;
+export default BlankPageTemplate;

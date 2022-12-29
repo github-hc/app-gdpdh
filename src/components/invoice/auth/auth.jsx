@@ -94,7 +94,7 @@ const Auth = () => {
                                 }}
                             >
                                 <Button type="primary" htmlType="submit">
-                                    SignIn
+                                    Sign In
                                 </Button>
                             </Form.Item>
                         </Form>

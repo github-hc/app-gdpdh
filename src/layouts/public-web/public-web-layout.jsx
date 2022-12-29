@@ -10,35 +10,35 @@ const PublicWebLayout = ({ children, ...rest }) => {
         token: { colorBgContainer },
     } = theme.useToken();
 
-    const onMenuItemClick = (type)=> {
-        switch(type){
+    const onMenuItemClick = (type) => {
+        switch (type) {
             case 1: {
                 const section = document.querySelector('#home');
-                return section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+                return section.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-            case 2:{
+            case 2: {
                 const section = document.querySelector('#services');
-                return section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+                return section.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-            case 3:{
+            case 3: {
                 const section = document.querySelector('#about');
-                return section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+                return section.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-            case 4:{
+            case 4: {
                 const section = document.querySelector('#contact');
-                return section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+                return section.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
     }
     return (
-        <Layout id="publicWebLayout" className="layout" breakpoint={{xs: 8, sm: 16, md: 24, lg: 32}}>
+        <Layout id="publicWebLayout" className="layout" breakpoint={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Header
-             style={{
-                position: 'sticky',
-                top: 0,
-                zIndex: 1,
-                width: '100%',
-              }}
+                style={{
+                    position: 'sticky',
+                    top: 0,
+                    zIndex: 1,
+                    width: '100%',
+                }}
             >
                 {/* <div className="logo" /> */}
                 <Menu
@@ -46,24 +46,24 @@ const PublicWebLayout = ({ children, ...rest }) => {
                     mode="horizontal"
                     defaultSelectedKeys={['1']}>
 
-                    <Menu.Item key={'1'} onClick={()=>onMenuItemClick(1)}>
+                    <Menu.Item key={'1'} onClick={() => onMenuItemClick(1)}>
                         Home
                     </Menu.Item>
 
-                    <Menu.Item key={'2'} onClick={()=>onMenuItemClick(2)}>
+                    <Menu.Item key={'2'} onClick={() => onMenuItemClick(2)}>
                         Services
                     </Menu.Item>
 
-                    <Menu.Item key={'3'} onClick={()=>onMenuItemClick(3)}>
+                    <Menu.Item key={'3'} onClick={() => onMenuItemClick(3)}>
                         About
                     </Menu.Item>
 
-                    <Menu.Item key={'4'} onClick={()=>onMenuItemClick(4)}>
+                    <Menu.Item key={'4'} onClick={() => onMenuItemClick(4)}>
                         Contact
                     </Menu.Item>
                 </Menu>
 
-               
+
             </Header>
             <Content
                 style={{
@@ -84,7 +84,7 @@ const PublicWebLayout = ({ children, ...rest }) => {
                     textAlign: 'center',
                 }}
             >
-                Ghinsi Devi Pushpanjali Dental Hospital 
+                Ghinsi Devi Pushpanjali Dental Hospital
             </Footer>
         </Layout>
     );

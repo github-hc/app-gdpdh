@@ -27,7 +27,9 @@
   #invoiceMainLayoutContainer .ant-layout-content{
     height: 100% !important;
     min-height: 80% !important;
+    max-height: 90vh;
     width: 92% !important;
+    overflow-y: scroll !important;
 }
 
 #invoiceMainLayoutContainer .ant-table-tbody .ant-table-cell{

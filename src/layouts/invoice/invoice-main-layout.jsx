@@ -8,7 +8,7 @@ import {
   EyeOutlined,
   PoweroffOutlined
 } from '@ant-design/icons';
-import { Layout, Menu , Button} from 'antd';
+import { Layout, Menu, Button } from 'antd';
 import { useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 const { Header, Sider, Content } = Layout;
@@ -20,12 +20,12 @@ const InvoiceMainLayout = ({ children, ...rest }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if(!token || token.trim().toLowerCase() === 'null' || token.trim().toLowerCase() === 'undefined'){
-     history.push('/invoice/sign-in');
+    if (!token || token.trim().toLowerCase() === 'null' || token.trim().toLowerCase() === 'undefined') {
+      history.push('/invoice/sign-in');
     }
   });
 
-  const onSignOutClick = () =>{
+  const onSignOutClick = () => {
     localStorage.clear();
     history.push('/invoice/sign-in');
   }

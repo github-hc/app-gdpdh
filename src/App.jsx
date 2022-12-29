@@ -15,10 +15,12 @@ const App = () =>{
           <Route exact path='/' >
             <Redirect to='/home' />
           </Route>
-          <Route exact path={'/invoice/sign-in'} component={Auth} />
+          <Route exact path='/invoice' >
+            <Redirect to='/invoice/sign-in' />
+          </Route>
 
+          <Route exact path={'/invoice/sign-in'} component={Auth} />
           <PublicWebLayoutRoute exact path="/home" component={IndexPublicWeb} />
-          <Route exact path={'/invoice'} component={ViewPatientDetails} />
           <InvoiceMainLayoutRoute exact path="/invoice/add-patient-details:id?" component={AddPatientDetails} />
           <InvoiceMainLayoutRoute exact path="/invoice/view-patient-details" component={ViewPatientDetails} />
         </Switch>

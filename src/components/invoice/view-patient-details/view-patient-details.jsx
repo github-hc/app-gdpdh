@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { IdcardOutlined, PrinterOutlined, SearchOutlined, UserAddOutlined } from '@ant-design/icons';
-import { Button, Input, Space, Table, Row, Col, Drawer, Tooltip, Spin } from 'antd';
+import { Button, Input, Space, Table, Row, Col, Drawer, Tooltip, Spin, Tag } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { PatientDetailService } from '../../../services/patient-detail-service';
 import { Preview, print } from 'react-html2pdf';
@@ -24,6 +24,7 @@ const ViewPatientDetails = () => {
     const [openCardDrawer, setOpenCardDrawer] = useState(false);
     const [openInvoiceDrawer, setOpenInvoiceDrawer] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [invoiceNo, setInvoiceNo] = useState('');
     const history = useHistory();
     //#endregion
 
@@ -182,7 +183,7 @@ const ViewPatientDetails = () => {
 
         setParticularsTotal(totalAmt);
         setPatientParticularsDetails(createPatientDetailsReq.particularsList);
-
+        setInvoiceNo(row.id);
         setOpenInvoiceDrawer(true);
     }
 
@@ -326,7 +327,7 @@ const ViewPatientDetails = () => {
         >
             {openInvoiceDrawer ?
                 <Preview id={'preview-invoice-template'}>
-                    <InvoiceTemplate patientBasicDetails={patientBasicDetails} paricularsList={patientParticularsDetails} particularsTotal={particularsTotal} />
+                    <InvoiceTemplate patientBasicDetails={patientBasicDetails} paricularsList={patientParticularsDetails} particularsTotal={particularsTotal} invoiceNo={invoiceNo} />
                 </Preview>
                 : <></>
             }
@@ -361,9 +362,6 @@ const ViewPatientDetails = () => {
                 <>
                     <Row>
                         <Col span={24}>
-                            {/* <label>
-                    Patients Records:
-                </label> */}
                         </Col>
                     </Row>
                     <Row>
@@ -376,9 +374,7 @@ const ViewPatientDetails = () => {
                 :
                 <Row>
                     <Col span={20}>
-                        <label>
-                            Patients Records:
-                        </label>
+                        <Tag color="gold">Patients Details: </Tag>
                     </Col>
                     <Col span={4}>
                         <Button type='primary' icon={<UserAddOutlined />} onClick={onAddNewClick}>Add New Patient</Button>
