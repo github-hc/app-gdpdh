@@ -1,20 +1,60 @@
-.logo {
-    height: 32px;
-    margin: 16px;
-  }
+#divLogo{
+    position: relative;
+    float: left;
+    top: 5px;
+    border: 2px solid greenyellow;
+    height: auto;
+}
 
-#publicWebLayout .ant-layout-header {
+#publicWebLayout .menuHeader {
     background: #097969 !important;
+    height: 35px;
 }
 
 #publicWebLayout .ant-menu-dark {
     background: #097969 !important;
+    height: 35px;
+}
+
+#publicWebLayout .ant-menu-dark li{
+    top: -15px !important;
 }
 
 br {
-    display: block; /* makes it have a width */
-    content: ""; /* clears default height */
-    margin-top: 0; /* change this to whatever height you want it */
+    display: block;
+    content: ""; 
+    margin-top: 0;
+}
+
+.lblHead{
+    font-weight: 800;
+    font-size: 18px;
+    color: #097969 !important;
+}
+
+.lblSubHead{
+    top: -45px !important;
+    font-size: 12px;
+    position: relative;
+    color: #484848 !important;
+}
+
+.headerTag{
+    padding: 15px !important;
+    float: right;
+    font-weight: 800;
+}
+
+#logoHead{
+    z-index: 99999 !important;
+}
+
+#menuHead{
+z-index: 99999 !important;
+}
+
+#logoHead .ant-col{
+    height: 80px !important;
 }
 
 #publicWebLayout .ant-menu-title-content{

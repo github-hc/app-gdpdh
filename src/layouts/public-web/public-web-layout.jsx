@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { Layout, Menu, theme } from 'antd';
+import { Col, Layout, Menu, Row, Tag, theme } from 'antd';
 import './public-web-layout.css';
+import { PublicWebConst } from '../../constants/public-web-const';
 const { Header, Content, Footer } = Layout;
 
 
@@ -32,19 +33,46 @@ const PublicWebLayout = ({ children, ...rest }) => {
     }
     return (
         <Layout id="publicWebLayout" className="layout" breakpoint={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+          <Header
+          id='logoHead'
+          style={{
+            position: 'sticky',
+            top: 0,
+            zIndex: 1,
+            width: '100%',
+            height:'80px',
+            background:'white',
+            paddingTop: '2px'
+        }}
+          >
+          <Row>
+              <Col>
+              <img width={110} height={78} src={window.location.origin+'/logo.png'} />
+              </Col>
+              <Col span={18}>
+                  <label className='lblHead'>Ghinsi Devi Pushpanjali Dental Hospital</label><br/>
+                  <label className='lblSubHead'>(A Unit Of Ghinsi Devi Pushpanjali Healthcare Pvt Ltd)</label>
+              </Col>
+              <Col span={4}>
+              <Tag className='headerTag' color="gold">Call: 01423 - 299266, 91 - 9602304200</Tag>
+              </Col>
+          </Row>
+          </Header>
             <Header
+            id='menuHead'
+               className='menuHeader'
                 style={{
                     position: 'sticky',
-                    top: 0,
+                    top: 80,
                     zIndex: 1,
                     width: '100%',
                 }}
             >
-                {/* <div className="logo" /> */}
                 <Menu
                     theme="dark"
                     mode="horizontal"
-                    defaultSelectedKeys={['1']}>
+                    defaultSelectedKeys={['1']}
+                    >
 
                     <Menu.Item key={'1'} onClick={() => onMenuItemClick(1)}>
                         Home
@@ -61,9 +89,9 @@ const PublicWebLayout = ({ children, ...rest }) => {
                     <Menu.Item key={'4'} onClick={() => onMenuItemClick(4)}>
                         Contact
                     </Menu.Item>
+  
+                    
                 </Menu>
-
-
             </Header>
             <Content
                 style={{

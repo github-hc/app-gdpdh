@@ -27,7 +27,7 @@ Pushpanjali NH-48, Service Road,<br/>Daulatpura, Rajasthan 303805</Tag>
           <Tag  color="gold"><b>Our Location -  2:</b> <br />505, Gangori Bazar Rd, Gangori Bazaar <br/> Jaipur, Rajasthan 302002</Tag>
             <br />
             <br />
-            <iframe title="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.1908385337833!2d75.81762441501972!3d26.92916386586464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db1aff41bfa81%3A0xe3254c4f16a2443!2s505%2C%20Gangori%20Bazar%20Rd%2C%20Gangori%20Bazaar%2C%20Tripolia%20Bazar%2C%20Pink%20City%2C%20Jaipur%2C%20Rajasthan%20302001!5e0!3m2!1sen!2sin!4v1670618239697!5m2!1sen!2sin" className="mapLocation" allowFullscreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14228.763955341426!2d75.8198131!3d26.9291591!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb210019015fa9fcb!2sDr%20Lokesh%20sod!5e0!3m2!1sen!2sin!4v1672586147184!5m2!1sen!2sin" className="mapLocation" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </Col>
       </Row>

@@ -1,68 +1,58 @@
-import { Card, Col, Row, Space, Tag, Timeline } from 'antd';
+import { Card, Carousel, Col, Divider, Progress, Row, Space, Tag, Timeline } from 'antd';
 import Meta from 'antd/es/card/Meta';
+import { PublicWebConst } from '../../../constants/public-web-const';
 import './about.css';
+
+const contentStyle = {
+  height: '430px',
+  color: '#fff',
+  lineHeight: '160px',
+  textAlign: 'center',
+  background: '#097969 ',
+  padding: '12px',
+};
 
 const About = () => {
   return (
     <div id="aboutDetailsContainer">
-      <div id="aboutFoundation">
-        <Card title="Ghinsi Devi  Pushpanjali  GDP Foundation Jaipur">
+      <div id="aboutHospital">
+        <Card>
           <p>
-            Ghinsi  Devi  Pushpanjali foundation was established in December 2020 to provide mainly dental health and education along with  basic health services in rural areas  at outskirts of Jaipur.
+            Ghinsi  Devi  Pushpanjali Dental Hospital was established in December 2020 to provide mainly dental health and education along with  basic health services in rural areas  at outskirts of Jaipur.
           </p>
           <p>
-            The  Ghinsi  Devi Pushpanjali foundation is working to improve oral health in rular areas, where a significant proportion of population has a incidence of poor oral health.  We provide free dental services. Our volunteers participate in multiple outreach camp programs throughout the year- to educate diagnose and treat hundreds of people in need.
+            We are working to improve oral health in rular areas, where a significant proportion of population has a incidence of poor oral health.
           </p>
           <p>
-            A simple example of an awareness activity undertaken by our dentists is to demonstrate how to rush,. They are told hoe to hold the brush, kind of toothpaste to be used and frequency. They are told how to hold the brush, kind of toothpaste to be used and frequency of brushing. We often provide them with free toothpaste and brushes for regular use. We educate the elderly on how the constant consumption of tobacco and gutkha can ruin oral health.
-          </p>
-
-          <p>
-
-            <h4>Why We ?</h4>
-            <Timeline>
-              <Timeline.Item color='green'>Provide much needed all round treatment</Timeline.Item>
-              <Timeline.Item color='green'>Trusted and Reliable</Timeline.Item>
-              <Timeline.Item color='green'>No cost treatment</Timeline.Item>
-              <Timeline.Item color='green'>Clinical diagnosis and treatment is provided on spot</Timeline.Item>
-              <Timeline.Item color='green'>No waiting period</Timeline.Item>
-            </Timeline>
-
+            We offer a full renge of options when it comes to dental health. We are available at two main locations Daulatpura(NH-48) and Gangauri Bazar in Jaipur.
           </p>
 
           <p>
-
-            <h4>Our Mission</h4>
-            <Timeline>
-              <Timeline.Item color='green'>To provide multiple treatment options and ensure quality of it.</Timeline.Item>
-              <Timeline.Item color='green'>To educate our society about oral health and bring better results.</Timeline.Item>
-            </Timeline>
-
+            Whether you need urgent dental care, or just a convenient appointment around your schedule, nothing makes us happier than seeing a smile return after a painful dental emergency.
           </p>
 
           <p>
-
-            <h4>Our Vision</h4>
-            <Timeline>
-              <Timeline.Item color='green'>Trusted and renowned in oral healthcare.</Timeline.Item>
-            </Timeline>
-
+            Your visits with us are all about you, your comfort, happiness and complete satisfaction with your care. Our mission is to establish a lifelong bond with our patients and we treat everyone like a member of our family. It is our belief, that the more you know about dental health, the better prepared you are to make wise decisions about your health care. We always stay informed of the latest advancements in dental technology and we will take the time to discuss different options with our patients, to arrive at the best personalized plan for each individual.
           </p>
           <p>
-
-            <h4>Our Values</h4>
-            <Timeline>
-              <Timeline.Item color='green'>Respect</Timeline.Item>
-              <Timeline.Item color='green'>Integrity</Timeline.Item>
-              <Timeline.Item color='green'>Appreciation</Timeline.Item>
-              <Timeline.Item color='green'>Empowering</Timeline.Item>
-              <Timeline.Item color='green'>Compassion</Timeline.Item>
-              <Timeline.Item color='green'>collaboration</Timeline.Item>
-            </Timeline>
-
+            A smile is worth a thousand words. It speaks volume about a person and we are always happy to bring a smile on your face.
           </p>
+
+          <Carousel>
+            <div>
+              <img style={contentStyle} width={'100%'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=110-O6Fi2V8uUPG8OcIEkR5v4DwDzEnn2"} />
+            </div>
+            <div>
+              <img style={contentStyle} width={'100%'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1IFA4h4UBSWUqR5OdNjJQ2SimW01i8xap"} />
+            </div>
+            <div>
+              <img style={contentStyle} width={'100%'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1YjyYxmHP--gGAebPlA-RPHIPu9-PimwW"} />
+            </div>
+            <div>
+              <img style={contentStyle} width={'100%'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1swdFzZ7RnRNOCDYmJAHLJ2u2LgEFZgpC"} />
+            </div>
+          </Carousel>
         </Card>
-
       </div>
       <div id="aboutFounders">
         <Card title="Our Founders">
@@ -70,13 +60,14 @@ const About = () => {
             <Col span={12}>
               <Row>
                 <Col span={12}>
-                  <img alt="example" width={'100%'} height={'300px'} src="https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg" />
+                  <img alt="example" width={'100%'} height={'350px'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1p5HtAqSpRTLj-rU8v5Hl_P9C92YjHhLI"} />
                 </Col>
                 <Col span={12}>
                   <Card className='profile'>
                     <h4>Dr Lokesh Sod- Dental Surgeon</h4>
                     <p>JDC Jaipur- Batch 2007</p>
                     <p>9602304200</p>
+                    <Divider />
                   </Card>
                 </Col>
               </Row>
@@ -84,13 +75,14 @@ const About = () => {
             <Col span={12}>
               <Row>
                 <Col span={12}>
-                  <img alt="example" width={'100%'} height={'300px'} src="https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg" />
+                  <img alt="example" width={'100%'} height={'350px'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1pCCDllxdcF-IjbVgHO79BSXwQj96S2Lu"} />
                 </Col>
                 <Col span={12}>
-                  <Card class="profile">
+                  <Card className='profile'>
                     <h4>Mrs. Pushpanjali- MSc Nursing- Medical Surgical Nursing</h4>
                     <p>S.N. Medical College Jodhpur- Batch- 2013</p>
                     <p>9887060695</p>
+                    <Divider />
                   </Card>
                 </Col>
               </Row>
