@@ -40,7 +40,7 @@ const PublicWebLayout = ({ children, ...rest }) => {
             top: 0,
             zIndex: 1,
             width: '100%',
-            height:'80px',
+            height:'83px',
             background:'white',
             paddingTop: '2px'
         }}
@@ -54,7 +54,7 @@ const PublicWebLayout = ({ children, ...rest }) => {
                   <label className='lblSubHead'>(A Unit Of Ghinsi Devi Pushpanjali Healthcare Pvt Ltd)</label>
               </Col>
               <Col span={4}>
-              <Tag className='headerTag' color="gold">Call: 01423 - 299266, 91 - 9602304200</Tag>
+              {/* <Tag className='headerTag' color="gold">Call: 01423 - 299266, 91 - 9602304200</Tag> */}
               </Col>
           </Row>
           </Header>
@@ -63,7 +63,7 @@ const PublicWebLayout = ({ children, ...rest }) => {
                className='menuHeader'
                 style={{
                     position: 'sticky',
-                    top: 80,
+                    top: 83,
                     zIndex: 1,
                     width: '100%',
                 }}
