@@ -13,6 +13,7 @@ const contentStyle = {
 };
 
 const AboutFoundation = () => {
+  console.clear();
   return (
     <div id="aboutFoundationContainer">
       <div id="aboutFoundation">
@@ -74,16 +75,16 @@ const AboutFoundation = () => {
 
           <Carousel>
             <div>
-              <img style={contentStyle} width={'100%'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1rQDVS_u4T2BBIqBNy_mh5hqLr5o9_leB"} />
+              <img className='aboutFoundationImage' src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1rQDVS_u4T2BBIqBNy_mh5hqLr5o9_leB"} />
             </div>
             <div>
-              <img style={contentStyle} width={'100%'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1Ilw8Nn8p9WXGheFfNKgVhH3KucI7TcxV"} />
+              <img className='aboutFoundationImage' src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1Ilw8Nn8p9WXGheFfNKgVhH3KucI7TcxV"} />
             </div>
             <div>
-              <img style={contentStyle} width={'100%'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1-UwDOFPMz1KxGzv1turpB_PHYleqshJ0"} />
+              <img className='aboutFoundationImage' src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1-UwDOFPMz1KxGzv1turpB_PHYleqshJ0"} />
             </div>
             <div>
-              <img style={contentStyle} width={'100%'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1afhEPUHXV053ddpi_vKL-UjtjvReOB-z"} />
+              <img className='aboutFoundationImage' src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1afhEPUHXV053ddpi_vKL-UjtjvReOB-z"} />
             </div>
           </Carousel>
         </Card>

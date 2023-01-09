@@ -56,4 +56,5 @@ const Home = () => (
     </Card>
   </>
 );
+console.clear();
 export default Home;

@@ -1,3 +1,13 @@
 #aboutFoundation{
     padding: 15px !important;
 }
+
+.aboutFoundationImage{
+    height: 430px;
+    color: #fff;
+    line-height: 160px;
+    text-align: center;
+    background: #097969;
+    padding: 12px;
+    width: 100%;
+}

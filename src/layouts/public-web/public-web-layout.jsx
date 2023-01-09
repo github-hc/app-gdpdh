@@ -35,19 +35,10 @@ const PublicWebLayout = ({ children, ...rest }) => {
         <Layout id="publicWebLayout" className="layout" breakpoint={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
           <Header
           id='logoHead'
-          style={{
-            position: 'sticky',
-            top: 0,
-            zIndex: 1,
-            width: '100%',
-            height:'83px',
-            background:'white',
-            paddingTop: '2px'
-        }}
           >
           <Row>
               <Col>
-              <img width={110} height={78} src={window.location.origin+'/logo.png'} />
+              <img className='imgLogo' src={window.location.origin+'/logo.png'} />
               </Col>
               <Col span={18}>
                   <label className='lblHead'>Ghinsi Devi Pushpanjali Dental Hospital</label><br/>
@@ -61,12 +52,6 @@ const PublicWebLayout = ({ children, ...rest }) => {
             <Header
             id='menuHead'
                className='menuHeader'
-                style={{
-                    position: 'sticky',
-                    top: 83,
-                    zIndex: 1,
-                    width: '100%',
-                }}
             >
                 <Menu
                     theme="dark"

@@ -3,16 +3,8 @@ import Meta from 'antd/es/card/Meta';
 import { PublicWebConst } from '../../../constants/public-web-const';
 import './about.css';
 
-const contentStyle = {
-  height: '430px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
-  background: '#097969 ',
-  padding: '12px',
-};
-
 const About = () => {
+  console.clear();
   return (
     <div id="aboutDetailsContainer">
       <div id="aboutHospital">
@@ -40,27 +32,27 @@ const About = () => {
 
           <Carousel>
             <div>
-              <img style={contentStyle} width={'100%'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=110-O6Fi2V8uUPG8OcIEkR5v4DwDzEnn2"} />
+              <img className='aboutImage' src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=110-O6Fi2V8uUPG8OcIEkR5v4DwDzEnn2"} />
             </div>
             <div>
-              <img style={contentStyle} width={'100%'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1IFA4h4UBSWUqR5OdNjJQ2SimW01i8xap"} />
+              <img className='aboutImage' src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1IFA4h4UBSWUqR5OdNjJQ2SimW01i8xap"} />
             </div>
             <div>
-              <img style={contentStyle} width={'100%'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1YjyYxmHP--gGAebPlA-RPHIPu9-PimwW"} />
+              <img className='aboutImage' src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1YjyYxmHP--gGAebPlA-RPHIPu9-PimwW"} />
             </div>
             <div>
-              <img style={contentStyle} width={'100%'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1swdFzZ7RnRNOCDYmJAHLJ2u2LgEFZgpC"} />
+              <img className='aboutImage' src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1swdFzZ7RnRNOCDYmJAHLJ2u2LgEFZgpC"} />
             </div>
           </Carousel>
         </Card>
       </div>
       <div id="aboutFounders">
         <Card title="Our Founders">
-          <Row>
+          <Row id="aboutFoundersRow">
             <Col span={12}>
-              <Row>
+              <Row className='founderContentRow'>
                 <Col span={12}>
-                  <img alt="example" width={'100%'} height={'350px'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1p5HtAqSpRTLj-rU8v5Hl_P9C92YjHhLI"} />
+                  <img alt="Img" className='founderImg' src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1p5HtAqSpRTLj-rU8v5Hl_P9C92YjHhLI"} />
                 </Col>
                 <Col span={12}>
                   <Card className='profile'>
@@ -73,9 +65,9 @@ const About = () => {
               </Row>
             </Col>
             <Col span={12}>
-              <Row>
+              <Row className='founderContentRow'>
                 <Col span={12}>
-                  <img alt="example" width={'100%'} height={'350px'} src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1pCCDllxdcF-IjbVgHO79BSXwQj96S2Lu"} />
+                  <img alt="Img" className='founderImg' src={PublicWebConst.GoogleDriveImagePath + "?export=view&id=1pCCDllxdcF-IjbVgHO79BSXwQj96S2Lu"} />
                 </Col>
                 <Col span={12}>
                   <Card className='profile'>

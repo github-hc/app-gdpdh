@@ -18,9 +18,3 @@
    padding-left: 40px !important;
    padding-right: 40px !important;
 }
-
-@media (max-width: 480px) {
-    #services{
-        padding: 5px !important;
-    }
-}

@@ -26,11 +26,3 @@
     font-size: 15px !important;
     font-weight: 700;
 }
-
-@media (max-width: 480px) {
-    .mapLocation{
-        width: 80% !important;
-        height: 300px !important;
-        border: 0px !important;
-    }
-}
