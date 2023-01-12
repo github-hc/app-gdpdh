@@ -17,6 +17,7 @@ import { useLocation } from 'react-router-dom';
 import PatientCardTemplate from '../common/patient-card-template';
 import moment from 'moment';
 import BlankPageTemplate from '../common/blank-page';
+import * as html2pdf  from 'html2pdf.js';
 
 dayjs.extend(customParseFormat);
 
@@ -245,7 +246,7 @@ const AddPatientDetails = () => {
 
     const onPrintCardClick = () => {
         if (!patientBasicDetails) {
-            alert('No Details Found To Print Invoice');
+            alert('No Details Found To Print Card');
             return;
         }
 
@@ -254,7 +255,7 @@ const AddPatientDetails = () => {
 
     const onPrintBlankPageClick = () => {
         if (!patientBasicDetails) {
-            alert('No Details Found To Print Invoice');
+            alert('No Details Found');
             return;
         }
 
@@ -272,6 +273,34 @@ const AddPatientDetails = () => {
     const onBlankPageDrawerClose = () => {
         setOpenBlankPageDrawer(false);
     };
+
+    const onDownloadInvoice = () => {
+        var element = document.getElementById('mainInvoiceTable');
+        var opt = {
+            margin: 0,
+            filename: 'invoice-' + moment().format('DD/MM/YYYY HH:mm:ss') +'.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 1 },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+
+        // New Promise-based usage:
+        html2pdf().set(opt).from(element).save();
+    }
+
+    const onDownloadBkankPage = () => {
+        var element = document.getElementById('mainInvoiceTable');
+        var opt = {
+            margin: 0,
+            filename: 'Blank-' + moment().format('DD/MM/YYYY HH:mm:ss') +'.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 1 },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+
+        // New Promise-based usage:
+        html2pdf().set(opt).from(element).save();
+    }
     //#endregion
 
     //#region Helper Functions
@@ -306,8 +335,7 @@ const AddPatientDetails = () => {
                         extra={
                             <Space>
                                 <Button onClick={onInvoiceDrawerClose}>Cancel</Button>
-                                <Button type="primary" onClick={() =>
-                                    print('invoice-' + moment().format('DD/MM/YYYY HH:mm:ss') + '', 'preview-invoice-template')}>
+                                <Button type="primary" onClick={onDownloadInvoice}>
                                     Download
                                 </Button>
                             </Space>
@@ -358,8 +386,7 @@ const AddPatientDetails = () => {
                         extra={
                             <Space>
                                 <Button onClick={onBlankPageDrawerClose}>Cancel</Button>
-                                <Button type="primary" onClick={() =>
-                                    print('blank-page-' + moment().format('DD/MM/YYYY HH:mm:ss') + '', 'blank-page-template')}>
+                                <Button type="primary" onClick={onDownloadBkankPage}>
                                     Download
                                 </Button>
                             </Space>

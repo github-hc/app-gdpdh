@@ -8,6 +8,7 @@ import { Preview, print } from 'react-html2pdf';
 import InvoiceTemplate from '../common/invoice-template';
 import PatientCardTemplate from '../common/patient-card-template';
 import moment from 'moment';
+import * as html2pdf from 'html2pdf.js';
 
 const ViewPatientDetails = () => {
     //#region local var declare
@@ -201,6 +202,20 @@ const ViewPatientDetails = () => {
     const onCardDrawerClose = () => {
         setOpenCardDrawer(false);
     };
+
+    const downloadInvoice = () => {
+        var element = document.getElementById('mainInvoiceTable');
+        var opt = {
+            margin: 0,
+            filename: 'invoice-' + moment().format('DD/MM/YYYY HH:mm:ss') +'.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 1 },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+
+        // New Promise-based usage:
+        html2pdf().set(opt).from(element).save();
+    }
     //#endregion
 
     //#region helper functions
@@ -318,8 +333,7 @@ const ViewPatientDetails = () => {
             extra={
                 <Space>
                     <Button onClick={onInvoiceDrawerClose}>Cancel</Button>
-                    <Button type="primary" onClick={() =>
-                        print('invoice-' + moment().format('DD/MM/YYYY HH:mm:ss') + '', 'preview-invoice-template')}>
+                    <Button type="primary" onClick={downloadInvoice}>
                         Download
                     </Button>
                 </Space>

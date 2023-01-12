@@ -4,7 +4,7 @@ import './invoice-template.css';
 const BlankPageTemplate = ({ patientBasicDetails }) => {
     return (
         <div style={{ padding: '10px', fontSize: '6px' }}>
-            <table id="mainInvoiceTable" style={{ width: '360px' }}>
+            <table id="mainInvoiceTable" width={'100%'}>
                 <tbody>
                     <tr>
                         <td>

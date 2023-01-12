@@ -3,8 +3,8 @@ import './invoice-template.css';
 
 const InvoiceTemplate = ({ patientBasicDetails, paricularsList, particularsTotal, invoiceNo }) => {
     return (
-        <div style={{ padding: '10px', fontSize: '6px' }}>
-            <table id="mainInvoiceTable" style={{ width: '360px' }}>
+        <div style={{ padding: '2px', fontSize: '6px' }}>
+            <table id="mainInvoiceTable" width={'100%'}>
                 <tbody>
                     <tr>
                         <td>
@@ -89,11 +89,11 @@ const InvoiceTemplate = ({ patientBasicDetails, paricularsList, particularsTotal
                     </tr>
                     <tr>
                         <td colSpan={2}>
-                            <table id="partcularsTable" border={'1'} cellSpacing={'0'} cellPadding={'0'} width={'360px'}>
+                            <table id="partcularsTable" border={'1'} cellSpacing={'0'} cellPadding={'0'}>
                                 <thead>
                                 <tr>
                                     <th width={'12%'}>Sr No</th>
-                                    <th>Particulars</th>
+                                    <th width={'68%'}>Particulars</th>
                                     <th width={'20%'}>Amount (₹)</th>
                                 </tr>
                                 </thead>
@@ -123,7 +123,7 @@ const InvoiceTemplate = ({ patientBasicDetails, paricularsList, particularsTotal
 
                     <tr>
                         <td colSpan={2}>
-                            <table width={'360px'} id="particularsSummary">
+                            <table id="particularsSummary" width={'100%'}>
                                 <tr>
                                     <td colSpan={3}><strong>Total (₹)</strong>: {particularsTotal}</td>
                                 </tr>
