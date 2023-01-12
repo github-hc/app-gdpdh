@@ -195,7 +195,7 @@ const AddPatientDetails = () => {
             fullName: values.fullName,
             age: values.age,
             gender: values.gender,
-            appointmentDate: moment(values.date.toDate()).utcOffset(+330).toISOString(true),
+            appointmentDate: values.date? moment(values.date.toDate()).utcOffset(+330).toISOString(true): values.date,
             contactNo: values.contactNo,
             particularsList: particularsArr
         };
